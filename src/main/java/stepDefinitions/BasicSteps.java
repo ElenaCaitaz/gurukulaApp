@@ -3,23 +3,18 @@ package stepDefinitions;
 import commons.DataKeys;
 import commons.PageElements;
 import commons.ScenarioContext;
-import cucumber.api.PendingException;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import fixtures.InputData;
 import org.junit.Assert;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import pages.*;
 import utils.PropertyManager;
 import utils.Utility;
 import utils.ValuesGeneration;
 
-import java.util.Arrays;
 import java.util.List;
-import java.util.Properties;
-import java.util.Random;
 
 public class BasicSteps {
     private ScenarioContext context = ScenarioContext.getInstance();
@@ -70,7 +65,7 @@ public class BasicSteps {
         WebElement alertMessage = homePage.alertMsg();
         Assert.assertTrue("Message is displayed", alertMessage.isDisplayed());
         Assert.assertEquals("Correct message is displayed", alertMessage.getText(), message);
-        Utility.takeScreenshot(context.getDriver(),"Alert message is displayed");
+        Utility.takeScreenshot(context.getDriver(), "Alert message is displayed");
     }
 
     @Given("^user navigates to Login page$")
@@ -146,7 +141,7 @@ public class BasicSteps {
         Assert.assertFalse("is displayed", errors.isEmpty());
         String actualMessage = errors.stream().filter(p -> p.getText().equals(message)).findAny().orElse(null).getText();
         Assert.assertEquals("messages match", actualMessage, message);
-        Utility.takeScreenshot(context.getDriver(),"Validation error is displayed");
+        Utility.takeScreenshot(context.getDriver(), "Validation error is displayed");
     }
 
     @When("^user clicks on forget password link$")
@@ -230,10 +225,10 @@ public class BasicSteps {
         String branchCode = (String) context.getData(DataKeys.CODE);
         if (param.equals(" not")) {
             Assert.assertTrue("branch is not created", !branchPage.isPresent(branchName, branchCode));
-            Utility.takeScreenshot(context.getDriver(),"Branch is not created");
+            Utility.takeScreenshot(context.getDriver(), "Branch is not created");
         } else {
             Assert.assertTrue("branch is created", branchPage.isPresent(branchName, branchCode));
-            Utility.takeScreenshot(context.getDriver(),"Branch is created");
+            Utility.takeScreenshot(context.getDriver(), "Branch is created");
         }
     }
 
@@ -340,7 +335,7 @@ public class BasicSteps {
             PageElements enumElement = PageElements.getByDescription(element);
             WebElement webElement = page.getElements(enumElement);
             Assert.assertEquals("Element is displayed", enumElement.getDescription(), webElement.getText().trim());
-            Utility.takeScreenshot(context.getDriver(),"Elements are displayed");
+            Utility.takeScreenshot(context.getDriver(), "Elements are displayed");
         }
     }
 
@@ -370,7 +365,7 @@ public class BasicSteps {
         Assert.assertFalse("is displayed", errors.isEmpty());
         String actualMessage = errors.stream().filter(p -> p.getText().equals(message)).findAny().orElse(null).getText();
         Assert.assertEquals("messages match", actualMessage, message);
-        Utility.takeScreenshot(context.getDriver(),"validation error is displayed");
+        Utility.takeScreenshot(context.getDriver(), "validation error is displayed");
     }
 
     @Then("^'(.*)' is displayed '(.*)' on Reset page$")
@@ -482,10 +477,10 @@ public class BasicSteps {
         String branchName = (String) context.getData(DataKeys.STAFF_BRANCH);
         if (param.equals(" not")) {
             Assert.assertTrue("staff is not created", !staffPage.staffIsPresent(staffName, branchName));
-            Utility.takeScreenshot(context.getDriver(),"Staff is not created");
+            Utility.takeScreenshot(context.getDriver(), "Staff is not created");
         } else {
             Assert.assertTrue("staff is created", staffPage.staffIsPresent(staffName, branchName));
-            Utility.takeScreenshot(context.getDriver(),"Staff is created");
+            Utility.takeScreenshot(context.getDriver(), "Staff is created");
         }
     }
 
@@ -539,7 +534,7 @@ public class BasicSteps {
         WebElement actualErrorMessage = page.getErrorMessage();
         Assert.assertTrue("Message is displayed", actualErrorMessage.isDisplayed());
         Assert.assertTrue("Correct message is displayed", actualErrorMessage.getText().contains(expectedErrorMessage));
-        Utility.takeScreenshot(context.getDriver(),"Error message is displayed");
+        Utility.takeScreenshot(context.getDriver(), "Error message is displayed");
     }
 
     @Then("^validation error is displayed '(.*)' on staff pop up$")
